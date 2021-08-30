@@ -541,11 +541,57 @@ main figure {
   width: 100%;
   margin-top: 10px;
 }
-.tab ul.tab-content li {
+.tab ul.tab-content li.tab-content-item  {
   display: none;;
 }
-.tab ul.tab-content li.active {
+.tab ul.tab-content li.tab-content-item.active {
   display: block;
+}
+
+/* User list */
+ul.user-list {
+  float: right;
+  width: calc(100% - 10px);
+  margin: 5px;
+}
+ul.user-list li {
+  width: calc(100% - 14px);
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  height: 40px;
+  line-height: 40px;
+  padding: 7px;
+}
+ul.user-list li:hover {
+  background: #202533;
+  border: 1px solid #2b2f3e;
+}
+ul.user-list li .user-icons {
+  float: left;
+  margin-top: 8px;
+  margin-left: 8px;
+}
+ul.user-list li .user-icons svg {
+  display: none;
+  float: left;
+  margin-right: 10px;
+}
+ul.user-list li .user-icons svg.active {
+  display: block;
+}
+ul.user-list li .user-icons svg.user-icons-microphone,
+ul.user-list li .user-icons svg.user-icons-webcam {
+  fill: #5f616c;
+}
+.avatar {
+  width: 40px;
+  border-radius: 12px;
+}
+ul.user-list li span {
+  float: right;
+  margin-right: 10px;
 }
 
 /* Bottom */
