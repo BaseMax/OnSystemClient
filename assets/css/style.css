@@ -352,11 +352,14 @@ template {
   padding: 0;
   margin: 0;
 }
+button {
+  cursor: pointer;
+}
 html {
   /* box-sizing: border-box; */
 }
 *, *:before, *:after {
-  /* box-sizing: inherit; */
+  box-sizing: inherit;
 }
 li {
   list-style: none;
@@ -515,16 +518,18 @@ main aside, main figure {
 }
 main aside {
   width: 400px;
-  /* background-color: red; */
   /* padding-top: 10px; */
   /* margin: 5px; */
 }
 main figure {
-  width: calc(100% - 400px);
-  /* background-color: blue; */
+  width: calc(100% - 407px);
 }
 .tab-content {
-  overflow: auto;
+  /* overflow: auto; */
+}
+.user-list,
+.chat-list {
+  overflow-y: auto;
 }
 .content-container {
   padding: 5px;
@@ -539,6 +544,7 @@ main figure {
   float: right;
   background-color: var(--tab-header-bg);
   padding: 5px;
+  border-radius: 7px;
 }
 .tab ul.tab-header li {
   cursor: pointer;
@@ -661,6 +667,8 @@ ul.chat-list li.chat-list-item .time {
 }
 ul.chat-list li.chat-list-item .time {
   font-size: 11px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 ul.chat-list li.chat-list-item ul.chat-list-item-messages {
   float: right;
@@ -677,7 +685,42 @@ ul.chat-list li.chat-list-item ul.chat-list-item-messages li {
   margin-bottom: 9px;
   padding: 8px;
 }
-  
+.submit-message {
+  padding: 10px;
+  float: right;
+  width: calc(100% - 20px);
+  height: auto;
+  border-top: 1px solid #282a39;
+}
+.submit-message-input,
+.submit-message-input:focus {
+  background: transparent;
+  border: none;
+  overflow: auto;
+  outline: none;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  resize: none;
+}
+.submit-message-input {
+  width: calc(100% - 90px);
+  height: auto;
+  min-height: 45px;
+  color: white;
+  font-size: 15px;
+}
+.submit-message-button {
+  border: none;
+  border-radius: 12px;
+  background: #0e79f9;
+  color: white;
+  width: 80px;
+  height: 45px;
+  text-align: center;
+}
 /* Bottom */
 .wrapper {
 	width: 100%;

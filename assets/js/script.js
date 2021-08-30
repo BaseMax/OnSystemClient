@@ -1,11 +1,13 @@
 // Elements
 const tabs = document.querySelectorAll(".tab");
 const header = document.querySelector("header");
-const aside = document.querySelector("main aside");
+const main = document.querySelector("main");
+const aside = main.querySelector("main aside");
 const asideTab = aside.querySelector(".tab");
 const asideTabHeader = asideTab.querySelector(".tab-header");
 const asideTabContent = asideTab.querySelector(".tab-content");
 const asideTabContentItems = asideTabContent.querySelectorAll(".tab-content-item");
+const figure = main.querySelector("figure");
 
 // Window
 const get_size = () => {
@@ -20,7 +22,13 @@ const resize = () => {
     console.log("New size:", width, height);
 
     const finalSize = height - header.offsetHeight - asideTabHeader.offsetHeight;
-    aside.querySelector(".tab-content").style.height = finalSize + "px";
+    asideTabContent.querySelector(".user-list").style.height = (finalSize - 0) + "px";
+
+    const submitMessage = asideTabContent.querySelector(".submit-message");
+    asideTabContent.querySelector(".chat-list").style.height = (finalSize - submitMessage.offsetHeight - 30) + "px";
+
+    figure.style.height = finalSize + "px";
+    aside.style.height = finalSize + "px";
 };
 const load = () => {
     resize();
