@@ -352,6 +352,12 @@ template {
   padding: 0;
   margin: 0;
 }
+html {
+  /* box-sizing: border-box; */
+}
+*, *:before, *:after {
+  /* box-sizing: inherit; */
+}
 li {
   list-style: none;
 }
@@ -419,6 +425,27 @@ img {
   font-weight: 100;
   font-style: normal;
 }
+/* Scrools */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #171929; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #02041a; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #000001; 
+}
+
 /* Colors */
 :root {
   --body-color: white;
@@ -496,6 +523,9 @@ main figure {
   width: calc(100% - 400px);
   /* background-color: blue; */
 }
+.tab-content {
+  overflow: auto;
+}
 .content-container {
   padding: 5px;
 }
@@ -542,7 +572,7 @@ main figure {
   margin-top: 10px;
 }
 .tab ul.tab-content li.tab-content-item  {
-  display: none;;
+  display: none;
 }
 .tab ul.tab-content li.tab-content-item.active {
   display: block;
@@ -557,7 +587,7 @@ ul.user-list {
 ul.user-list li {
   width: calc(100% - 14px);
   display: inline-block;
-  cursor: pointer;
+  /* cursor: pointer; */
   border: 1px solid transparent;
   border-radius: 10px;
   height: 40px;
@@ -568,15 +598,24 @@ ul.user-list li:hover {
   background: #202533;
   border: 1px solid #2b2f3e;
 }
-ul.user-list li .user-icons {
-  float: left;
+ul.user-list li .user-icons,
+ul.user-list li .user-action {
   margin-top: 8px;
   margin-left: 8px;
+}
+ul.user-list li .user-icons {
+  float: left;
 }
 ul.user-list li .user-icons svg {
   display: none;
   float: left;
   margin-right: 10px;
+}
+ul.user-list li .user-action {
+  float: left;
+}
+ul.user-list li .user-action svg {
+  fill: #5f616c;
 }
 ul.user-list li .user-icons svg.active {
   display: block;
