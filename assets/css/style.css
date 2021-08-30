@@ -649,18 +649,20 @@ ul.chat-list li.chat-list-item ul.chat-list-item-messages {
 }
 ul.chat-list li.chat-list-item img.avatar {
   float: right;
+  margin-top: 22px;
+  margin-left: 9px;
 }
 ul.chat-list li.chat-list-item label.name {
-  float: right;
+  margin-right: 10px;
 }
-ul.chat-list li.chat-list-item label.name,
-ul.chat-list li.chat-list-item span.date {
+ul.chat-list li.chat-list-item .name,
+ul.chat-list li.chat-list-item .date {
   color: #444655;
 }
-ul.chat-list li.chat-list-item span.date {
-  float: left;
+ul.chat-list li.chat-list-item .date {
 }
 ul.chat-list li.chat-list-item ul.chat-list-item-messages {
+  float: right;
   margin-right: 10px;
 }
 ul.chat-list li.chat-list-item ul.chat-list-item-messages li {
