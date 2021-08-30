@@ -633,6 +633,47 @@ ul.user-list li span {
   margin-right: 10px;
 }
 
+/* Chat List */
+ul.chat-list {
+  width: 100%;
+}
+ul.chat-list li.chat-list-item {
+  float: right;
+  width: 100%;
+}
+ul.chat-list li.chat-list-item {
+
+}
+ul.chat-list li.chat-list-item ul.chat-list-item-messages {
+
+}
+ul.chat-list li.chat-list-item img.avatar {
+  float: right;
+}
+ul.chat-list li.chat-list-item label.name {
+  float: right;
+}
+ul.chat-list li.chat-list-item label.name,
+ul.chat-list li.chat-list-item span.date {
+  color: #444655;
+}
+ul.chat-list li.chat-list-item span.date {
+  float: left;
+}
+ul.chat-list li.chat-list-item ul.chat-list-item-messages {
+  margin-right: 10px;
+}
+ul.chat-list li.chat-list-item ul.chat-list-item-messages li {
+  width: auto;
+  max-width: 100%;
+  display: inline-block;
+  background: #232535;
+  border: 1px solid #2b2d3d;
+  border-radius: 9px;
+  margin-bottom: 9px;
+  padding: 8px;
+}
+  
 /* Bottom */
 .wrapper {
 	width: 100%;
