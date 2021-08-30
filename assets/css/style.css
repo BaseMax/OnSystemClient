@@ -347,7 +347,238 @@ template {
 [hidden] {
   display: none;
 }
-
+/* All */
+* {
+  padding: 0;
+  margin: 0;
+}
+li {
+  list-style: none;
+}
+img {
+  border: 0;
+}
+/* Fonts */
+@font-face {
+  font-family: Vazir;
+  src: url('../font/Vazir-Regular-FD.eot');
+  src: url('../font/Vazir-Regular-FD.eot?#iefix') format('embedded-opentype'),
+       url('../font/Vazir-Regular-FD.woff2') format('woff2'),
+       url('../font/Vazir-Regular-FD.woff') format('woff'),
+       url('../font/Vazir-Regular-FD.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: Vazir;
+  src: url('../font/Vazir-Bold-FD.eot');
+  src: url('../font/Vazir-Bold-FD.eot?#iefix') format('embedded-opentype'),
+       url('../font/Vazir-Bold-FD.woff2') format('woff2'),
+       url('../font/Vazir-Bold-FD.woff') format('woff'),
+       url('../font/Vazir-Bold-FD.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: Vazir;
+  src: url('../font/Vazir-Black-FD.eot');
+  src: url('../font/Vazir-Black-FD.eot?#iefix') format('embedded-opentype'),
+       url('../font/Vazir-Black-FD.woff2') format('woff2'),
+       url('../font/Vazir-Black-FD.woff') format('woff'),
+       url('../font/Vazir-Black-FD.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: Vazir;
+  src: url('../font/Vazir-Medium-FD.eot');
+  src: url('../font/Vazir-Medium-FD.eot?#iefix') format('embedded-opentype'),
+       url('../font/Vazir-Medium-FD.woff2') format('woff2'),
+       url('../font/Vazir-Medium-FD.woff') format('woff'),
+       url('../font/Vazir-Medium-FD.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: Vazir;
+  src: url('../font/Vazir-Light-FD.eot');
+  src: url('../font/Vazir-Light-FD.eot?#iefix') format('embedded-opentype'),
+       url('../font/Vazir-Light-FD.woff2') format('woff2'),
+       url('../font/Vazir-Light-FD.woff') format('woff'),
+       url('../font/Vazir-Light-FD.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: Vazir;
+  src: url('../font/Vazir-Thin-FD.eot');
+  src: url('../font/Vazir-Thin-FD.eot?#iefix') format('embedded-opentype'),
+       url('../font/Vazir-Thin-FD.woff2') format('woff2'),
+       url('../font/Vazir-Thin-FD.woff') format('woff'),
+       url('../font/Vazir-Thin-FD.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+/* Colors */
+:root {
+  --body-color: white;
+  --tab-header-bg:#232535;
+  --tab-header-active-bg: #2f313e;
+  --tab-header-active-border: #3c3e4b;
+  --body-bg: #1c1e2e;
+  --border-color: #282a37;
+}
+/* Start */
 body {
-	background-color:  black;
+	background-color: var(--body-bg);
+  color: var(--body-color);
+  direction: rtl;
+  text-align: right;
+  font-family: Vazir;
+}
+/* Header */
+header {
+  width: calc(100% - 10px);
+  margin-bottom: 0;
+  padding: 5px;
+  float: right;
+  border-bottom: 1px solid var(--border-color);
+}
+header .room-details {
+  width: calc(100% - 95px);
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.inline-text {
+  max-width: 100%;
+  clear: both;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+header .room-details .room-name {
+  font-size: 16px;
+  width: 100%;
+}
+header .room-details .room-presenter {
+  font-size: 12px;
+  width: 100%;
+}
+header .icon-badge {
+  width: 45px;
+  height: 45px;
+  padding: 10px;
+  border-radius: 7px;
+  background: #31b741;
+  background: linear-gradient(90deg, #7dd857 0%, #09a944 100%);
+}
+header .icon-badge img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Main */
+main {
+  width: 100%;
+  float: right;
+}
+main aside, main figure {
+  border-left: 1px solid var(--border-color);
+  height: 100vh;
+}
+main aside {
+  width: 400px;
+  /* background-color: red; */
+  /* padding-top: 10px; */
+  /* margin: 5px; */
+}
+main figure {
+  width: calc(100% - 400px);
+  /* background-color: blue; */
+}
+.content-container {
+  padding: 5px;
+}
+
+/* Tab */
+.tab {
+  width: 100%;
+}
+.tab ul.tab-header {
+  width: calc(100% - 10px);
+  float: right;
+  background-color: var(--tab-header-bg);
+  padding: 5px;
+}
+.tab ul.tab-header li {
+  cursor: pointer;
+  float: right;
+  width: calc(50% - 6px);
+  margin-left: 3px;
+  margin-right: 3px;
+}
+.tab ul.tab-header li:first-child {
+  margin-right: 0px;
+  width: calc(50% - 3px);
+}
+.tab ul.tab-header li:last-child {
+  margin-left: 0px;
+  width: calc(50% - 3px);
+}
+.tab ul.tab-header li .tab-item {
+  border-radius: 4px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+}
+.tab ul.tab-header li.active .tab-item {
+  background-color: var(--tab-header-active-bg);
+  border: 1px solid var(--tab-header-active-border);
+  font-weight: bold;
+}
+.tab ul.tab-content {
+  float: right;
+  width: 100%;
+  margin-top: 10px;
+}
+.tab ul.tab-content li {
+  display: none;;
+}
+.tab ul.tab-content li.active {
+  display: block;
+}
+
+/* Bottom */
+.wrapper {
+	width: 100%;
+	height: 100%;
+}
+
+.wrapper .middle {
+
+}
+
+.wrapper .bottom {
+	width: 100%;
+	height: auto;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+}
+
+.left {
+	float: left;
+}
+
+.center {
+	display:table;
+	margin: 0 auto;
+}
+
+.right {
+	float: right;
+}
+
+.clear {
+  clear: both;
 }
