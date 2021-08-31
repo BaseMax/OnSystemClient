@@ -883,3 +883,21 @@ ul.videos li.videos-item .videos-item-front .videos-item-controllers svg.active 
   fill: #a8a9b2;
   width: 20px;
 }
+.control-button-sidebar {
+  display: none;
+}
+
+/* Responsive */
+@media only screen and (max-width: 900px) {
+  main aside {
+    width: 100%;
+    display: none;
+  }
+  main figure {
+    width: 100%;
+    display: block;
+  }
+  .control-button-sidebar {
+    display: block;
+  }
+}

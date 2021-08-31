@@ -39,6 +39,7 @@ const control_microphone = document.querySelector(".control-button-microphone");
 const control_webcam = document.querySelector(".control-button-webcam");
 const control_record = document.querySelector(".control-button-record");
 const control_screen = document.querySelector(".control-button-sharescreen");
+const control_sidebar = document.querySelector(".control-button-sidebar");
 
 // Update layout
 const update_controlls = () => {
@@ -215,6 +216,11 @@ const control_record_toggle = () => {
         send_record_start();
     }
 };
+const control_sidebar_toggle = () => {
+    aside.style.display = "block";
+    figure.style.display = "none";
+    bottom.style.display = "none";
+};
 
 // Events
 window.addEventListener("load", load);
@@ -224,6 +230,8 @@ control_microphone.addEventListener("click", control_microphone_toggle);
 control_webcam.addEventListener("click", control_webcam_toggle);
 control_record.addEventListener("click", control_record_toggle);
 control_screen.addEventListener("click", control_screen_toggle);
+control_sidebar.addEventListener("click", control_sidebar_toggle);
+
 
 for(let tab of tabs) {
     console.log("Tab", tab);
