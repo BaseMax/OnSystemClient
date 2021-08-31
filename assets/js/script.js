@@ -38,17 +38,42 @@ const bottom = document.querySelector(".bottom");
 const control_microphone = document.querySelector(".control-button-microphone");
 const control_webcam = document.querySelector(".control-button-webcam");
 const control_record = document.querySelector(".control-button-record");
-const control_sharescreen = document.querySelector(".control-button-sharescreen");
+const control_screen = document.querySelector(".control-button-sharescreen");
 
-// Room
+// Update layout
+const update_controlls = () => {
+    // microphone
+    if(database.state.microphone) {
+        control_microphone.classList.add("active");
+    }
+    else {
+        control_microphone.classList.remove("active");
+    }
+    // webcam
+    if(database.state.webcam) {
+        control_webcam.classList.add("active");
+    }
+    else {
+        control_webcam.classList.remove("active");
+    }
+    // screen
+    if(database.state.screen) {
+        control_screen.classList.add("active");
+    }
+    else {
+        control_screen.classList.remove("active");
+    }
+};
 const update_room = () => {
     headerRoomName.innerText = database.room.name;
     headerRoomSubName.innerText = database.room.subname;
     headerRoomImage.src = database.room.image;
 
-    control_record.classList.remove("active");
     if(database.room.record) {
         control_record.classList.add("active");
+    }
+    else {
+        control_record.classList.remove("active");
     }
 };
 
@@ -111,17 +136,32 @@ const change_tab_content = (index) => {
 };
 
 // Socket relateds
+// microphone
 const microphone_start = () => {
     database.state.microphone = true;
+    update_controlls();
 };
 const microphone_stop = () => {
     database.state.microphone = false;
+    update_controlls();
 };
+// webcam
 const webcam_start = () => {
     database.state.webcam = true;
+    update_controlls();
 };
 const webcam_stop = () => {
     database.state.webcam = false;
+    update_controlls();
+};
+// screen
+const screen_start = () => {
+    database.state.screen = true;
+    update_controlls();
+};
+const screen_stop = () => {
+    database.state.screen = false;
+    update_controlls();
 };
 
 // Socket
@@ -159,6 +199,14 @@ const control_webcam_toggle = () => {
         webcam_start();
     }
 };
+const control_screen_toggle = () => {
+    if(database.room.screen) {
+        screen_stop();
+    }
+    else {
+        screen_start();
+    }
+};
 const control_record_toggle = () => {
     if(database.room.record) {
         send_record_stop();
@@ -166,9 +214,6 @@ const control_record_toggle = () => {
     else {
         send_record_start();
     }
-};
-const control_sharescreen_toggle = () => {
-
 };
 
 // Events
@@ -178,7 +223,7 @@ window.addEventListener("resize", resize);
 control_microphone.addEventListener("click", control_microphone_toggle);
 control_webcam.addEventListener("click", control_webcam_toggle);
 control_record.addEventListener("click", control_record_toggle);
-control_sharescreen.addEventListener("click", control_sharescreen_toggle);
+control_screen.addEventListener("click", control_screen_toggle);
 
 for(let tab of tabs) {
     console.log("Tab", tab);
