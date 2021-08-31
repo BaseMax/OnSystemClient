@@ -780,7 +780,7 @@ ul.videos li.videos-item.videos-item-normal {
   margin-right: 10px;
 }
 ul.videos li.videos-item.videos-item-wide {
-  width: 100%;
+  width: calc(100% - 20px);
 }
 ul.videos li.videos-item.videos-item-normal:last-child {
   /* margin-right: 0px !important; */

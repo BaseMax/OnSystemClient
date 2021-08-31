@@ -41,6 +41,11 @@ const control_record = document.querySelector(".control-button-record");
 const control_screen = document.querySelector(".control-button-sharescreen");
 const control_sidebar = document.querySelector(".control-button-sidebar");
 
+const userList = aside.querySelector(".user-list");
+const chatLIst = aside.querySelector(".chat-list");
+const chatLIstInput = document.querySelector(".submit-message-input");
+const chatLIstSubmit = document.querySelector(".submit-message-button");
+
 // Update layout
 const update_controlls = () => {
     // microphone
@@ -104,6 +109,11 @@ const resize = () => {
 const load = () => {
     resize();
     update_room();
+};
+
+// Chat
+const chat_submit = () => {
+    chatLIstInput.value = "";
 };
 
 // Tab
@@ -238,6 +248,8 @@ control_webcam.addEventListener("click", control_webcam_toggle);
 control_screen.addEventListener("click", control_screen_toggle);
 control_record.addEventListener("click", control_record_toggle);
 control_sidebar.addEventListener("click", control_sidebar_toggle);
+
+chatLIstSubmit.addEventListener("click", chat_submit);
 
 
 for(let tab of tabs) {
