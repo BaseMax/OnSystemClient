@@ -8,6 +8,12 @@ const asideTabHeader = asideTab.querySelector(".tab-header");
 const asideTabContent = asideTab.querySelector(".tab-content");
 const asideTabContentItems = asideTabContent.querySelectorAll(".tab-content-item");
 const figure = main.querySelector("figure");
+const bottom = document.querySelector(".bottom");
+
+const control_microphone = document.querySelector(".control-button-microphone");
+const control_webcam = document.querySelector(".control-button-webcam");
+const control_record = document.querySelector(".control-button-record");
+const control_sharescreen = document.querySelector(".control-button-sharescreen");
 
 // Window
 const get_size = () => {
@@ -29,12 +35,12 @@ const resize = () => {
 
     figure.style.height = finalSize + "px";
     aside.style.height = finalSize + "px";
+    // bottom.style.marginRight = aside.offsetWidth + "px";
+    bottom.style.width = "calc(100% - " + aside.offsetWidth + "px)";
 };
 const load = () => {
     resize();
 };
-window.addEventListener("load", load);
-window.addEventListener("resize", resize);
 
 // Tab
 const tab_disactive_all = (tab) => {
@@ -65,6 +71,30 @@ const change_tab_content = (index) => {
     console.log("Content newTab: ", content);
     content.classList.add("active");
 };
+
+// Controls
+const control_microphone_toggle = () => {
+
+};
+const control_webcam_toggle = () => {
+
+};
+const control_record_toggle = () => {
+
+};
+const control_sharescreen_toggle = () => {
+
+};
+
+// Events
+window.addEventListener("load", load);
+window.addEventListener("resize", resize);
+
+window.addEventListener("click", control_microphone_toggle);
+window.addEventListener("click", control_webcam_toggle);
+window.addEventListener("click", control_record_toggle);
+window.addEventListener("click", control_sharescreen_toggle);
+
 for(let tab of tabs) {
     console.log("Tab", tab);
     const items = tab.querySelectorAll("ul.tab-header li");

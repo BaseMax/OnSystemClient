@@ -864,13 +864,22 @@ ul.videos li.videos-item .videos-item-front .videos-item-controllers svg.active 
 .control-button {
   float: right;
   padding: 10px;
+  padding-bottom: 3px;
   background-color: #232736;
   border: 1px solid #323444;
   margin-left: 10px;
   margin-right: 10px;
   border-radius: 7px;
   margin-bottom: 15px;
+  cursor: pointer;
+}
+.control-button.active {
+  background-color: #0e79f9;
+}
+.control-button.active svg {
+  fill: white;
 }
 .control-button svg {
-  fill: white;
+  fill: #a8a9b2;
+  width: 20px;
 }
