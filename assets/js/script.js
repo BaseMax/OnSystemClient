@@ -222,6 +222,13 @@ const control_sidebar_toggle = () => {
     bottom.style.display = "none";
 };
 
+// Others
+const hide_sidebar = () => {
+    aside.style.display = "none";
+    figure.style.display = "block";
+    bottom.style.display = "block";
+};
+
 // Events
 window.addEventListener("load", load);
 window.addEventListener("resize", resize);

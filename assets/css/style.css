@@ -738,6 +738,7 @@ ul.chat-list li.chat-list-item ul.chat-list-item-messages li {
 	position: fixed;
 	bottom: 0;
 	left: 0;
+  z-index: 99;
 }
 
 /* Generally */
@@ -892,6 +893,9 @@ ul.videos li.videos-item .videos-item-front .videos-item-controllers svg.active 
   main aside {
     width: 100%;
     display: none;
+  }
+  ul.videos li.videos-item.videos-item-normal {
+    width: calc(100% - 20px);
   }
   main figure {
     width: 100%;
