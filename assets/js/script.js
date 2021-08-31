@@ -22,7 +22,7 @@ const resize = () => {
     console.log("New size:", width, height);
 
     const finalSize = height - header.offsetHeight - asideTabHeader.offsetHeight;
-    asideTabContent.querySelector(".user-list").style.height = (finalSize - 0) + "px";
+    asideTabContent.querySelector(".user-list").style.height = (finalSize - 28) + "px";
 
     const submitMessage = asideTabContent.querySelector(".submit-message");
     asideTabContent.querySelector(".chat-list").style.height = (finalSize - submitMessage.offsetHeight - 30) + "px";

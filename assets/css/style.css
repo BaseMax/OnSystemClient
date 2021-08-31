@@ -530,6 +530,7 @@ main figure {
 .user-list,
 .chat-list {
   overflow-y: auto;
+  overflow-x: hidden;
 }
 .content-container {
   padding: 5px;
