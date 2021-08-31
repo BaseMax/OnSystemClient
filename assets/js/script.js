@@ -115,6 +115,26 @@ const load = () => {
 const chat_submit = () => {
     chatLIstInput.value = "";
 };
+const chat_keypress = function(e){
+    var code = (e.keyCode ? e.keyCode : e.which);
+    if (code === 13) {
+        e.preventDefault();
+        chat_submit();
+        return false;
+    }
+    else {
+        return true;
+    }
+};
+// const chat_input = function(event) {
+//     console.log("event", event);
+//     console.log("keycode", event.keyCode);
+//     chatLIstInput.value = chatLIstInput.value.replace(/\n/g,'');
+//     if (event.keyCode === 13) {
+//         event.preventDefault();
+//         chat_submit();
+//     }
+// };
 
 // Tab
 const tab_disactive_all = (tab) => {
@@ -250,7 +270,10 @@ control_record.addEventListener("click", control_record_toggle);
 control_sidebar.addEventListener("click", control_sidebar_toggle);
 
 chatLIstSubmit.addEventListener("click", chat_submit);
+// chatLIstInput.addEventListener("input", chat_input);
+chatLIstInput.addEventListener("keypress", chat_keypress);
 
+oninput="this.value = this.value.replace(/\n/g,'')"
 
 for(let tab of tabs) {
     console.log("Tab", tab);
