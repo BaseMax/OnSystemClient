@@ -740,6 +740,7 @@ ul.chat-list li.chat-list-item ul.chat-list-item-messages li {
 	left: 0;
 }
 
+/* Generally */
 .left {
 	float: left;
 }
@@ -755,4 +756,45 @@ ul.chat-list li.chat-list-item ul.chat-list-item-messages li {
 
 .clear {
   clear: both;
+}
+
+/* Videos */
+ul.videos {
+
+}
+ul.videos li.videos-item {
+
+}
+ul.videos li.videos-item .videos-item-back {
+  
+}
+ul.videos li.videos-item .videos-item-back video {
+  
+}
+ul.videos li.videos-item .videos-item-front {
+  
+}
+ul.videos li.videos-item .videos-item-front .videos-item-namebox {
+  
+}
+ul.videos li.videos-item .videos-item-front .videos-item-namebox label.name {
+  
+}
+.status-icon {
+  
+}
+.status-icon-online {
+  
+}
+.status-icon-offline {
+  
+}
+ul.videos li.videos-item .videos-item-front .videos-item-controllers {
+  
+}
+ul.videos li.videos-item .videos-item-front .videos-item-controllers svg {
+  display: none;
+}
+ul.videos li.videos-item .videos-item-front .videos-item-controllers svg.active {
+  display: block;
 }
