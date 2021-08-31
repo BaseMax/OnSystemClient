@@ -201,7 +201,7 @@ const control_webcam_toggle = () => {
     }
 };
 const control_screen_toggle = () => {
-    if(database.room.screen) {
+    if(database.state.screen) {
         screen_stop();
     }
     else {
@@ -235,8 +235,8 @@ window.addEventListener("resize", resize);
 
 control_microphone.addEventListener("click", control_microphone_toggle);
 control_webcam.addEventListener("click", control_webcam_toggle);
-control_record.addEventListener("click", control_record_toggle);
 control_screen.addEventListener("click", control_screen_toggle);
+control_record.addEventListener("click", control_record_toggle);
 control_sidebar.addEventListener("click", control_sidebar_toggle);
 
 
