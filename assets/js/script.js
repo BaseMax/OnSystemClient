@@ -110,6 +110,20 @@ const change_tab_content = (index) => {
     content.classList.add("active");
 };
 
+// Socket relateds
+const microphone_start = () => {
+    database.state.microphone = true;
+};
+const microphone_stop = () => {
+    database.state.microphone = false;
+};
+const webcam_start = () => {
+    database.state.webcam = true;
+};
+const webcam_stop = () => {
+    database.state.webcam = false;
+};
+
 // Socket
 const send_record_stop = () => {
     // TODO: send to server
@@ -130,10 +144,20 @@ const recive_record_start = () => {
 
 // Controls
 const control_microphone_toggle = () => {
-
+    if(database.state.microphone) {
+        microphone_stop();
+    }
+    else {
+        microphone_start();
+    }
 };
 const control_webcam_toggle = () => {
-
+    if(database.state.webcam) {
+        webcam_stop();
+    }
+    else {
+        webcam_start();
+    }
 };
 const control_record_toggle = () => {
     if(database.room.record) {
@@ -151,10 +175,10 @@ const control_sharescreen_toggle = () => {
 window.addEventListener("load", load);
 window.addEventListener("resize", resize);
 
-window.addEventListener("click", control_microphone_toggle);
-window.addEventListener("click", control_webcam_toggle);
-window.addEventListener("click", control_record_toggle);
-window.addEventListener("click", control_sharescreen_toggle);
+control_microphone.addEventListener("click", control_microphone_toggle);
+control_webcam.addEventListener("click", control_webcam_toggle);
+control_record.addEventListener("click", control_record_toggle);
+control_sharescreen.addEventListener("click", control_sharescreen_toggle);
 
 for(let tab of tabs) {
     console.log("Tab", tab);
