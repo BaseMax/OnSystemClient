@@ -860,3 +860,17 @@ ul.videos li.videos-item .videos-item-front .videos-item-controllers svg {
 ul.videos li.videos-item .videos-item-front .videos-item-controllers svg.active {
   display: block;
 }
+/* Bottom buttons */
+.control-button {
+  float: right;
+  padding: 10px;
+  background-color: #232736;
+  border: 1px solid #323444;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 7px;
+  margin-bottom: 15px;
+}
+.control-button svg {
+  fill: white;
+}
