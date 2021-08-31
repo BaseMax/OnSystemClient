@@ -1,6 +1,31 @@
+// Database
+var database = {};
+database.auth = {
+    "token":"dfgdfgdfg",
+    "name":"محمدیه",
+    "image":"https://i.pravatar.cc/90?img=81",
+};
+database.room = {
+    name: "کلاس درس آموزش معادلات دیفرانسیل - جلسه 44",
+    shortname: "معادلات دیفرانسیل",
+    subname: "دانشگاه کاشان",
+    image:"assets/image/logo-white.png",
+    record: true,
+};
+database.state = {
+    microphone: false,
+    webcam: false,
+    screen: false,
+};
+
 // Elements
 const tabs = document.querySelectorAll(".tab");
+
 const header = document.querySelector("header");
+const headerRoomName = header.querySelector(".room-name");
+const headerRoomSubName = header.querySelector(".room-presenter");
+const headerRoomImage = header.querySelector(".room-logo");
+
 const main = document.querySelector("main");
 const aside = main.querySelector("main aside");
 const asideTab = aside.querySelector(".tab");
@@ -14,6 +39,18 @@ const control_microphone = document.querySelector(".control-button-microphone");
 const control_webcam = document.querySelector(".control-button-webcam");
 const control_record = document.querySelector(".control-button-record");
 const control_sharescreen = document.querySelector(".control-button-sharescreen");
+
+// Room
+const update_room = () => {
+    headerRoomName.innerText = database.room.name;
+    headerRoomSubName.innerText = database.room.subname;
+    headerRoomImage.src = database.room.image;
+
+    control_record.classList.remove("active");
+    if(database.room.record) {
+        control_record.classList.add("active");
+    }
+};
 
 // Window
 const get_size = () => {
@@ -40,6 +77,7 @@ const resize = () => {
 };
 const load = () => {
     resize();
+    update_room();
 };
 
 // Tab
@@ -72,6 +110,24 @@ const change_tab_content = (index) => {
     content.classList.add("active");
 };
 
+// Socket
+const send_record_stop = () => {
+    // TODO: send to server
+    recive_record_stop();
+};
+const send_record_start = () => {
+    // TODO: send to server
+    recive_record_start();
+};
+const recive_record_stop = () => {
+    database.room.record = false;
+    update_room();
+};
+const recive_record_start = () => {
+    database.room.record = true;
+    update_room();
+};
+
 // Controls
 const control_microphone_toggle = () => {
 
@@ -80,7 +136,12 @@ const control_webcam_toggle = () => {
 
 };
 const control_record_toggle = () => {
-
+    if(database.room.record) {
+        send_record_stop();
+    }
+    else {
+        send_record_start();
+    }
 };
 const control_sharescreen_toggle = () => {
 
