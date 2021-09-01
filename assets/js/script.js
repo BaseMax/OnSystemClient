@@ -19,7 +19,7 @@ database.state = {
     screen: false,
 };
 database.chat = [];
-database.chat[database.chat.length++] = {
+database.chat.push({
     username: 'on',
     name: 'آن سیستم',
     datetime: '10:24',
@@ -27,9 +27,9 @@ database.chat[database.chat.length++] = {
         'سلام دوست عزیز، به جلسه خوش آمدید.',
     ],
     image: 'file:///project/OnSystemClient/image/avatar.jpg',
-};
+});
 database.users = [];
-database.users[database.users.length++] = {
+database.users.push({
     username: 'max',
     name: 'مکس بیس',
     role: 'user',
@@ -39,9 +39,9 @@ database.users[database.users.length++] = {
         screen: false,
     },
     image: 'https://i.pravatar.cc/90?img=50',
-};
+});
 for(let i=0;i<25;i++) {
-    database.users[database.users.length++] = {
+    database.users.push({
         username: 'test'+i,
         name: 'علیرضا حمییدی',
         role: 'user',
@@ -51,10 +51,10 @@ for(let i=0;i<25;i++) {
             screen: false,
         },
         image: 'https://i.pravatar.cc/90?img='+i,
-    };
+    });
 }
 for(let i=0;i<9;i++) {
-    database.chat[database.chat.length++] = {
+    database.chat.push({
         username: 'test1',
         name: 'حمید رضوی',
         datetime: '10:24',
@@ -63,8 +63,8 @@ for(let i=0;i<9;i++) {
             'خوب هستید؟ چه خبرا',
         ],
         image: 'https://i.pravatar.cc/90?img=50',
-    };
-    database.chat[database.chat.length++] = {
+    });
+    database.chat.push({
         username: 'test2',
         name: 'میلاد نورانی',
         datetime: '10:24',
@@ -72,8 +72,8 @@ for(let i=0;i<9;i++) {
             'مرسی قربانت. اوضاع خوبه!',
         ],
         image: 'https://i.pravatar.cc/90?img=44',
-    };
-    database.chat[database.chat.length++] = {
+    });
+    database.chat.push({
         username: 'test3',
         name: 'مجتبی ابراهیمی',
         datetime: '10:24',
@@ -81,7 +81,7 @@ for(let i=0;i<9;i++) {
             'پس کی مراسم شروع میشه؟',
         ],
         image: 'https://i.pravatar.cc/90?img=43',
-    };
+    });
 }
 
 // Elements
