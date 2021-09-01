@@ -17,6 +17,42 @@ database.state = {
     webcam: false,
     screen: false,
 };
+database.chat = [];
+database.chat[database.chat.length++] = {
+    name: 'آن سیستم',
+    datetime: '10:24',
+    messages: [
+        'سلام دوست عزیز، به جلسه خوش آمدید.',
+    ],
+    image: 'file:///project/OnSystemClient/image/avatar.jpg',
+};
+for(let i=0;i<9;i++) {
+    database.chat[database.chat.length++] = {
+        name: 'حمید رضوی',
+        datetime: '10:24',
+        messages: [
+            'سلام بچه ها! :)',
+            'خوب هستید؟ چه خبرا',
+        ],
+        image: 'https://i.pravatar.cc/90?img=50',
+    };
+    database.chat[database.chat.length++] = {
+        name: 'میلاد نورانی',
+        datetime: '10:24',
+        messages: [
+            'مرسی قربانت. اوضاع خوبه!',
+        ],
+        image: 'https://i.pravatar.cc/90?img=44',
+    };
+    database.chat[database.chat.length++] = {
+        name: 'مجتبی ابراهیمی',
+        datetime: '10:24',
+        messages: [
+            'پس کی مراسم شروع میشه؟',
+        ],
+        image: 'https://i.pravatar.cc/90?img=43',
+    };
+}
 
 // Elements
 const tabs = document.querySelectorAll(".tab");
@@ -47,6 +83,26 @@ const chatLIstInput = document.querySelector(".submit-message-input");
 const chatLIstSubmit = document.querySelector(".submit-message-button");
 
 // Update layout
+const update_chat = () => {
+    chatLIst
+    for(let message_group of database.chat) {
+        console.log(message_group);
+        let messages = ``;
+        for(let message of message_group.messages) {
+            messages += `<li>${message}</li>`;
+        }
+        const element = document.createElement("li");
+        element.classList.add("chat-list-item");
+        element.innerHTML = `<img class="avatar right" src="${message_group.image}">
+            <label class="name right">${message_group.name}</label>
+            <span class="time left">${message_group.datetime}</span>
+            <div class="clear"></div>
+            <ul class="chat-list-item-messages">
+                ${messages}
+            </ul>`;
+        chatLIst.appendChild(element);
+    }
+};
 const update_controlls = () => {
     // microphone
     if(database.state.microphone) {
@@ -109,11 +165,19 @@ const resize = () => {
 const load = () => {
     resize();
     update_room();
+    update_chat();
 };
 
 // Chat
 const chat_submit = () => {
+    const msg = {
+        name: 'مکس بیس',
+        image: 'https://avatars.githubusercontent.com/u/2658040?v=4',
+        datetime: '',
+        messages: [chatLIstInput.value],
+    };
     chatLIstInput.value = "";
+    chat_append_message(msg);
 };
 const chat_keypress = function(e){
     var code = (e.keyCode ? e.keyCode : e.which);
@@ -125,6 +189,9 @@ const chat_keypress = function(e){
     else {
         return true;
     }
+};
+const chat_append_message = (message) => {
+    console.log(message);
 };
 // const chat_input = function(event) {
 //     console.log("event", event);
