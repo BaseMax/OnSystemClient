@@ -1,9 +1,10 @@
 // Database
 var database = {};
 database.auth = {
-    "token":"dfgdfgdfg",
-    "name":"محمدیه",
-    "image":"https://i.pravatar.cc/90?img=81",
+    username:"dfgdfgdfg",
+    password:"dfgdfgdfg",
+    name:"محمدیه",
+    image:"https://i.pravatar.cc/90?img=81",
 };
 database.room = {
     name: "کلاس درس آموزش معادلات دیفرانسیل - جلسه 44",
@@ -28,6 +29,7 @@ database.chat[database.chat.length++] = {
 };
 for(let i=0;i<9;i++) {
     database.chat[database.chat.length++] = {
+        username: 'test1',
         name: 'حمید رضوی',
         datetime: '10:24',
         messages: [
@@ -37,6 +39,7 @@ for(let i=0;i<9;i++) {
         image: 'https://i.pravatar.cc/90?img=50',
     };
     database.chat[database.chat.length++] = {
+        username: 'test2',
         name: 'میلاد نورانی',
         datetime: '10:24',
         messages: [
@@ -45,6 +48,7 @@ for(let i=0;i<9;i++) {
         image: 'https://i.pravatar.cc/90?img=44',
     };
     database.chat[database.chat.length++] = {
+        username: 'test3',
         name: 'مجتبی ابراهیمی',
         datetime: '10:24',
         messages: [
@@ -83,10 +87,16 @@ const chatListInput = document.querySelector(".submit-message-input");
 const chatListSubmit = document.querySelector(".submit-message-button");
 
 // Update layout
-const append_chat = (message_group) => {
+const clear_chat = () => {
+    chatList.innerHTML = '';
+};
+const chat_create_message = (message) => {
+    return `<li>${message}</li>`
+};
+const chat_append_new_message = (message_group, init = false) => {
     let messages = ``;
     for(let message of message_group.messages) {
-        messages += `<li>${message}</li>`;
+        messages += chat_create_message(message);
     }
     const element = document.createElement("li");
     element.classList.add("chat-list-item");
@@ -97,12 +107,46 @@ const append_chat = (message_group) => {
         <ul class="chat-list-item-messages">
             ${messages}
         </ul>`;
-    chatList.appendChild(element);
+        database.chat.push(message_group);
+        if(init === false) {
+            chatList.appendChild(element);
+        }
+};
+const chat_append_already_message = (message_group, init = false) => {
+    const last_child = chatList.lastChild;
+    console.log("last is", last_child);
+    const messages = last_child.querySelector("ul.chat-list-item-messages");
+
+    for(let message of message_group.messages) {
+        const new_message = document.createElement("li");
+        new_message.innerHTML = chat_create_message(message_group.messages[0]);
+        messages.appendChild(new_message);
+        if(init === false) {
+            database.chat[database.chat.length-1].messages.push(message);
+        }
+    }
+};
+const chat_append_message = (message_group, init = false) => {
+    if(database.chat.length > 0) {
+        const last = database.chat[database.chat.length-1];
+        console.log("last check", last);
+        console.log("last message_group", message_group);
+        if(last.username === message_group.username) {
+            chat_append_already_message(message_group, init);
+            scroll_down();
+            return;
+        }
+    }
+    chat_append_new_message(message_group, init);
+    scroll_down();
+};
+const scroll_down = () => {
+    chatList.scrollTo(0, chatList.scrollHeight);
 };
 const update_chat = () => {
-    chatList.innerHTML = '';
+    clear_chat();
     for(let message_group of database.chat) {
-        append_chat(message_group)
+        chat_append_message(message_group, true)
     }
 };
 const update_controlls = () => {
@@ -173,10 +217,13 @@ const load = () => {
 // Chat
 const chat_submit = () => {
     const msg = {
+        username: database.auth.username,
         name: 'مکس بیس',
         image: 'https://avatars.githubusercontent.com/u/2658040?v=4',
-        datetime: '',
-        messages: [chatListInput.value],
+        datetime: '16:03',
+        messages: [
+            chatListInput.value,
+        ],
     };
     chatListInput.value = "";
     chat_append_message(msg);
@@ -191,9 +238,6 @@ const chat_keypress = function(e){
     else {
         return true;
     }
-};
-const chat_append_message = (message) => {
-    console.log(message);
 };
 // const chat_input = function(event) {
 //     console.log("event", event);
