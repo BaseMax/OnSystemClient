@@ -251,7 +251,7 @@ const get_size = () => {
     const width  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     const height = window.innerHeight|| document.documentElement.clientHeight|| document.body.clientHeight;
     return [width, height];
-}
+};
 const resize = () => {
     const sizes = get_size();
     const width = sizes[0];
