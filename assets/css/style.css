@@ -658,6 +658,8 @@ ul.chat-list li.chat-list-item img.avatar {
   margin-top: 29px;
   margin-left: 9px;
   width: 35px;
+  height: 35px;
+  background-color: black;
 }
 ul.chat-list li.chat-list-item label.name {
   margin-right: 10px;
