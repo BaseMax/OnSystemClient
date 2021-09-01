@@ -112,6 +112,8 @@ const chatList = aside.querySelector(".chat-list");
 const chatListInput = document.querySelector(".submit-message-input");
 const chatListSubmit = document.querySelector(".submit-message-button");
 
+const userListTitleSpan = aside.querySelector(".tab-item-users span");
+
 // Update layout
 const clear_users = () => {
     userList.innerHTML = '';
@@ -197,11 +199,15 @@ const scroll_down = () => {
         chatList.scrollTo(0, chatList.scrollHeight);
     }, 50);
 };
+const update_users_count = () => {
+    userListTitleSpan.innerText = database.users.length;
+};
 const update_users = () => {
     clear_users();
     for(let user of database.users) {
         users_append_user(user, true)
     }
+    update_users_count();
     scroll_down();
 };
 const update_chat = () => {
