@@ -28,6 +28,31 @@ database.chat[database.chat.length++] = {
     ],
     image: 'file:///project/OnSystemClient/image/avatar.jpg',
 };
+database.users = [];
+database.users[database.users.length++] = {
+    username: 'max',
+    name: 'مکس بیس',
+    role: 'user',
+    access: {
+        microphone: true,
+        webcam: true,
+        screen: false,
+    },
+    image: 'https://i.pravatar.cc/90?img=50',
+};
+for(let i=0;i<25;i++) {
+    database.users[database.users.length++] = {
+        username: 'test'+i,
+        name: 'علیرضا حمییدی',
+        role: 'user',
+        access: {
+            microphone: false,
+            webcam: false,
+            screen: false,
+        },
+        image: 'https://i.pravatar.cc/90?img='+i,
+    };
+}
 for(let i=0;i<9;i++) {
     database.chat[database.chat.length++] = {
         username: 'test1',
@@ -88,6 +113,9 @@ const chatListInput = document.querySelector(".submit-message-input");
 const chatListSubmit = document.querySelector(".submit-message-button");
 
 // Update layout
+const clear_users = () => {
+    userList.innerHTML = '';
+}
 const clear_chat = () => {
     chatList.innerHTML = '';
 };
@@ -141,17 +169,46 @@ const chat_append_message = (message_group, init = false) => {
     chat_append_new_message(message_group, init);
     scroll_down();
 };
+const users_append_user = (user, init = false) => {
+    const element = document.createElement("li");
+    element.classList.add("chat-list-item");
+    element.innerHTML = `<img class="avatar right" src="${user.image}">
+        <span class="right">
+            ${user.name}
+        </span>
+        <div class="user-action">
+            <svg class="" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        </div>
+        <div class="user-icons">
+            <!-- microphone -->
+            <svg class="user-icons-microphone mute" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg>
+            <svg class="user-icons-microphone unmute active" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0zm0 0h24v24H0z" fill="none"/><path d="M19 11h-1.7c0 .74-.16 1.43-.43 2.05l1.23 1.23c.56-.98.9-2.09.9-3.28zm-4.02.17c0-.06.02-.11.02-.17V5c0-1.66-1.34-3-3-3S9 3.34 9 5v.18l5.98 5.99zM4.27 3L3 4.27l6.01 6.01V11c0 1.66 1.33 3 2.99 3 .22 0 .44-.03.65-.08l1.66 1.66c-.71.33-1.5.52-2.31.52-2.76 0-5.3-2.1-5.3-5.1H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c.91-.13 1.77-.45 2.54-.9L19.73 21 21 19.73 4.27 3z"/></svg>
+            <!-- webcam -->
+            <svg class="user-icons-webcam mute" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15 8v8H5V8h10m1-2H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4V7c0-.55-.45-1-1-1z"/></svg>
+            <svg class="user-icons-webcam unmute active" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M9.56 8l-2-2-4.15-4.14L2 3.27 4.73 6H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.21 0 .39-.08.55-.18L19.73 21l1.41-1.41-8.86-8.86L9.56 8zM5 16V8h1.73l8 8H5zm10-8v2.61l6 6V6.5l-4 4V7c0-.55-.45-1-1-1h-5.61l2 2H15z"/></svg>
+        </div>`;
+    userList.appendChild(element);
+    if(init === false) {
+        database.users.push(user);
+    }
+};
 const scroll_down = () => {
     setTimeout(() => {
         chatList.scrollTo(0, chatList.scrollHeight);
     }, 50);
+};
+const update_users = () => {
+    clear_users();
+    for(let user of database.users) {
+        users_append_user(user, true)
+    }
+    scroll_down();
 };
 const update_chat = () => {
     clear_chat();
     for(let message_group of database.chat) {
         chat_append_message(message_group, true)
     }
-    scroll_down();
 };
 const update_controlls = () => {
     // microphone
@@ -216,6 +273,7 @@ const load = () => {
     resize();
     update_room();
     update_chat();
+    update_users();
 };
 
 // Chat
@@ -317,7 +375,7 @@ const recive_user_join = () => {
 
 };
 const recive_user_left = () => {
-    
+
 };
 const send_chat = (message_group) => {
     // TODO: send to server
