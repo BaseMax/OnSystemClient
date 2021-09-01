@@ -142,13 +142,16 @@ const chat_append_message = (message_group, init = false) => {
     scroll_down();
 };
 const scroll_down = () => {
-    chatList.scrollTo(0, chatList.scrollHeight);
+    setTimeout(() => {
+        chatList.scrollTo(0, chatList.scrollHeight);
+    }, 50);
 };
 const update_chat = () => {
     clear_chat();
     for(let message_group of database.chat) {
         chat_append_message(message_group, true)
     }
+    scroll_down();
 };
 const update_controlls = () => {
     // microphone
@@ -310,6 +313,19 @@ const screen_stop = () => {
 };
 
 // Socket
+const recive_user_join = () => {
+
+};
+const recive_user_left = () => {
+    
+};
+const send_chat = (message_group) => {
+    // TODO: send to server
+};
+const recive_chat = (message_group) => {
+    if(!message_group) return;
+    chat_append_message(message_group);
+};
 const send_record_stop = () => {
     // TODO: send to server
     recive_record_stop();
