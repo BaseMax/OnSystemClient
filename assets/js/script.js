@@ -100,6 +100,7 @@ const append_chat = (message_group) => {
     chatList.appendChild(element);
 };
 const update_chat = () => {
+    chatList.innerHTML = '';
     for(let message_group of database.chat) {
         append_chat(message_group)
     }
