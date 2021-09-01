@@ -78,29 +78,30 @@ const control_screen = document.querySelector(".control-button-sharescreen");
 const control_sidebar = document.querySelector(".control-button-sidebar");
 
 const userList = aside.querySelector(".user-list");
-const chatLIst = aside.querySelector(".chat-list");
-const chatLIstInput = document.querySelector(".submit-message-input");
-const chatLIstSubmit = document.querySelector(".submit-message-button");
+const chatList = aside.querySelector(".chat-list");
+const chatListInput = document.querySelector(".submit-message-input");
+const chatListSubmit = document.querySelector(".submit-message-button");
 
 // Update layout
+const append_chat = (message_group) => {
+    let messages = ``;
+    for(let message of message_group.messages) {
+        messages += `<li>${message}</li>`;
+    }
+    const element = document.createElement("li");
+    element.classList.add("chat-list-item");
+    element.innerHTML = `<img class="avatar right" src="${message_group.image}">
+        <label class="name right">${message_group.name}</label>
+        <span class="time left">${message_group.datetime}</span>
+        <div class="clear"></div>
+        <ul class="chat-list-item-messages">
+            ${messages}
+        </ul>`;
+    chatList.appendChild(element);
+};
 const update_chat = () => {
-    chatLIst
     for(let message_group of database.chat) {
-        console.log(message_group);
-        let messages = ``;
-        for(let message of message_group.messages) {
-            messages += `<li>${message}</li>`;
-        }
-        const element = document.createElement("li");
-        element.classList.add("chat-list-item");
-        element.innerHTML = `<img class="avatar right" src="${message_group.image}">
-            <label class="name right">${message_group.name}</label>
-            <span class="time left">${message_group.datetime}</span>
-            <div class="clear"></div>
-            <ul class="chat-list-item-messages">
-                ${messages}
-            </ul>`;
-        chatLIst.appendChild(element);
+        append_chat(message_group)
     }
 };
 const update_controlls = () => {
@@ -174,9 +175,9 @@ const chat_submit = () => {
         name: 'مکس بیس',
         image: 'https://avatars.githubusercontent.com/u/2658040?v=4',
         datetime: '',
-        messages: [chatLIstInput.value],
+        messages: [chatListInput.value],
     };
-    chatLIstInput.value = "";
+    chatListInput.value = "";
     chat_append_message(msg);
 };
 const chat_keypress = function(e){
@@ -196,7 +197,7 @@ const chat_append_message = (message) => {
 // const chat_input = function(event) {
 //     console.log("event", event);
 //     console.log("keycode", event.keyCode);
-//     chatLIstInput.value = chatLIstInput.value.replace(/\n/g,'');
+//     chatListInput.value = chatListInput.value.replace(/\n/g,'');
 //     if (event.keyCode === 13) {
 //         event.preventDefault();
 //         chat_submit();
@@ -336,9 +337,9 @@ control_screen.addEventListener("click", control_screen_toggle);
 control_record.addEventListener("click", control_record_toggle);
 control_sidebar.addEventListener("click", control_sidebar_toggle);
 
-chatLIstSubmit.addEventListener("click", chat_submit);
-// chatLIstInput.addEventListener("input", chat_input);
-chatLIstInput.addEventListener("keypress", chat_keypress);
+chatListSubmit.addEventListener("click", chat_submit);
+// chatListInput.addEventListener("input", chat_input);
+chatListInput.addEventListener("keypress", chat_keypress);
 
 oninput="this.value = this.value.replace(/\n/g,'')"
 
