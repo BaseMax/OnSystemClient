@@ -20,6 +20,7 @@ database.state = {
 };
 database.chat = [];
 database.chat[database.chat.length++] = {
+    username: 'on',
     name: 'آن سیستم',
     datetime: '10:24',
     messages: [
@@ -107,19 +108,19 @@ const chat_append_new_message = (message_group, init = false) => {
         <ul class="chat-list-item-messages">
             ${messages}
         </ul>`;
+    chatList.appendChild(element);
+    if(init === false) {
         database.chat.push(message_group);
-        if(init === false) {
-            chatList.appendChild(element);
-        }
+    }
 };
 const chat_append_already_message = (message_group, init = false) => {
     const last_child = chatList.lastChild;
-    console.log("last is", last_child);
+    // console.log("last is", last_child);
     const messages = last_child.querySelector("ul.chat-list-item-messages");
 
     for(let message of message_group.messages) {
         const new_message = document.createElement("li");
-        new_message.innerHTML = chat_create_message(message_group.messages[0]);
+        new_message.innerText = message;
         messages.appendChild(new_message);
         if(init === false) {
             database.chat[database.chat.length-1].messages.push(message);
@@ -129,8 +130,8 @@ const chat_append_already_message = (message_group, init = false) => {
 const chat_append_message = (message_group, init = false) => {
     if(database.chat.length > 0) {
         const last = database.chat[database.chat.length-1];
-        console.log("last check", last);
-        console.log("last message_group", message_group);
+        // console.log("last check", last);
+        // console.log("last message_group", message_group);
         if(last.username === message_group.username) {
             chat_append_already_message(message_group, init);
             scroll_down();

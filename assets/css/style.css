@@ -685,6 +685,7 @@ ul.chat-list li.chat-list-item ul.chat-list-item-messages li {
   border-radius: 9px;
   margin-bottom: 9px;
   padding: 8px;
+  padding-bottom: 0px;
 }
 .submit-message {
   padding: 10px;
