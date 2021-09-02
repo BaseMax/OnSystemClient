@@ -1,3 +1,12 @@
+// Auth
+const ROOM_ID = prompt("Please enter room name", "step");
+const USER_ID = prompt("Please enter your username", "");
+const PASSWORD = prompt("Please enter your password", "");
+
+console.log("Auth:ROOM_ID", ROOM_ID);
+console.log("Auth:USER_ID", USER_ID);
+console.log("Auth:PASSWORD", PASSWORD);
+
 // Database
 var database = {};
 database.auth = {
