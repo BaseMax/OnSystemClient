@@ -19,5 +19,7 @@ Preview: https://basemax.github.io/OnSystemClient/room.html
 ### TODO
 
 - Adding light theme
+- Adding more functions to control the webcams
+- Adding whiteboard for supporting pen, etc
 
 © Copyright Max Base, 2021
