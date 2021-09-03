@@ -19,6 +19,8 @@ Preview: https://basemax.github.io/OnSystemClient/room.html
 ### TODO
 
 - Adding light theme
+- Support LTR
+- Adding English language
 - Adding more functions to control the webcams
 - Adding whiteboard for supporting pen, etc
 
