@@ -35,7 +35,7 @@ database.chat.push({
     messages: [
         'سلام دوست عزیز، به جلسه خوش آمدید.',
     ],
-    image: 'file:///project/OnSystemClient/image/avatar.jpg',
+    image: 'image/avatar.jpg',
 });
 database.users = [];
 database.users.push({
