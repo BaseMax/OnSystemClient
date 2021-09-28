@@ -15,9 +15,10 @@ https://onsystem.ir/
 
 ### Demo
 
-![](demo1.png)
-
-![](demo2.png)
+| Light  | Dark |
+| ------ | ----- |
+| ![](demo3.png) | ![](demo1.png)
+| ![](demo4.png) | ![](demo2.png)
 
 ### TODO
 
