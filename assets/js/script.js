@@ -1,7 +1,7 @@
 // Auth
-const ROOM_ID = prompt("Please enter room name", "step");
-const USER_ID = prompt("Please enter your username", "");
-const PASSWORD = prompt("Please enter your password", "");
+const ROOM_ID = ""; // prompt("Please enter room name", "step");
+const USER_ID = ""; // prompt("Please enter your username", "");
+const PASSWORD = ""; // prompt("Please enter your password", "");
 
 console.log("Auth:ROOM_ID", ROOM_ID);
 console.log("Auth:USER_ID", USER_ID);
@@ -130,19 +130,29 @@ const clear_users = () => {
 const clear_chat = () => {
     chatList.innerHTML = '';
 };
-const chat_create_message = (message) => {
-    return `<li>${message}</li>`
+const chat_create_inner_message = (message, time) => {
+    // TODO: remove < and > from `message`
+    const content = `<label>${message}</label>
+                     <span>${time}</span>`
+    return content
 };
-const chat_append_new_message = (message_group, init = false) => {
+
+const chat_create_message = (message, time, isMe = false) => {
+    const content = chat_create_inner_message(message, time)
+    if(isMe)
+        return `<li class="me">${content}</li>`
+    return `<li>${content}</li>`
+};
+const chat_append_new_message = (message_group, init = false, isMe = false) => {
     let messages = ``;
     for(let message of message_group.messages) {
-        messages += chat_create_message(message);
+        const time = '۱۲:۴۹'
+        messages += chat_create_message(message, time, isMe);
     }
     const element = document.createElement("li");
     element.classList.add("chat-list-item");
     element.innerHTML = `<img class="avatar right" src="${message_group.image}">
         <label class="name right">${message_group.name}</label>
-        <span class="time left">${message_group.datetime}</span>
         <div class="clear"></div>
         <ul class="chat-list-item-messages">
             ${messages}
@@ -152,32 +162,36 @@ const chat_append_new_message = (message_group, init = false) => {
         database.chat.push(message_group);
     }
 };
-const chat_append_already_message = (message_group, init = false) => {
+const chat_append_already_message = (message_group, init = false, isMe = false) => {
     const last_child = chatList.lastChild;
     // console.log("last is", last_child);
     const messages = last_child.querySelector("ul.chat-list-item-messages");
 
     for(let message of message_group.messages) {
         const new_message = document.createElement("li");
-        new_message.innerText = message;
+        if(isMe) {
+            new_message.classList.add("me");
+        }
+        const time = '۱۲:۴۹'
+        new_message.innerHTML = chat_create_inner_message(message, time);
         messages.appendChild(new_message);
         if(init === false) {
             database.chat[database.chat.length-1].messages.push(message);
         }
     }
 };
-const chat_append_message = (message_group, init = false) => {
+const chat_append_message = (message_group, init = false, isMe = false) => {
     if(database.chat.length > 0) {
         const last = database.chat[database.chat.length-1];
         // console.log("last check", last);
         // console.log("last message_group", message_group);
         if(last.username === message_group.username) {
-            chat_append_already_message(message_group, init);
+            chat_append_already_message(message_group, init, isMe);
             scroll_down();
             return;
         }
     }
-    chat_append_new_message(message_group, init);
+    chat_append_new_message(message_group, init, isMe);
     scroll_down();
 };
 const users_append_user = (user, init = false) => {
@@ -273,11 +287,21 @@ const resize = () => {
     const height = sizes[1];
     console.log("New size:", width, height);
 
-    const finalSize = height - header.offsetHeight - asideTabHeader.offsetHeight;
-    asideTabContent.querySelector(".user-list").style.height = (finalSize - 28) + "px";
+    const _header = document.querySelector("header");
+    // console.log(`header.offsetHeight: ${_header.offsetHeight}`)
+    const finalSize = height - _header.offsetHeight;// - asideTabHeader.offsetHeight;
+    // console.log(`finalSize: ${finalSize}`)
+    const finalSizeInside = finalSize - 48;
+    // console.log(`finalSizeInside: ${finalSizeInside}`)
+    asideTabContent.querySelector(".user-list").style.height = (finalSizeInside) + "px";
 
-    const submitMessage = asideTabContent.querySelector(".submit-message");
-    asideTabContent.querySelector(".chat-list").style.height = (finalSize - submitMessage.offsetHeight - 30) + "px";
+    // console.log(document.querySelector(".submit-message"));
+    // console.log(document.querySelector(".submit-message").offsetHeight);
+
+    // const submitMessage = asideTabContent.querySelector(".submit-message");
+    // console.log(`submitMessage.offsetHeight: ${submitMessage.offsetHeight}`)
+    // console.log(`finalSizeInside - submitMessage.offsetHeight: ${finalSizeInside - 45}`)
+    asideTabContent.querySelector(".chat-list").style.height = (finalSizeInside - 68) + "px";
 
     figure.style.height = finalSize + "px";
     aside.style.height = finalSize + "px";
@@ -303,7 +327,7 @@ const chat_submit = () => {
         ],
     };
     chatListInput.value = "";
-    chat_append_message(msg);
+    chat_append_message(msg, false, true);
 };
 const chat_keypress = function(e){
     var code = (e.keyCode ? e.keyCode : e.which);
@@ -450,9 +474,17 @@ const control_record_toggle = () => {
     }
 };
 const control_sidebar_toggle = () => {
-    aside.style.display = "block";
-    figure.style.display = "none";
-    bottom.style.display = "none";
+    console.log("->", aside.style.display);
+    if(aside.style.display === "none") {
+        aside.style.display = "none";
+        figure.style.display = "block";
+        bottom.style.display = "block";
+    }
+    else {
+        aside.style.display = "block";
+        figure.style.display = "none";
+        bottom.style.display = "none";
+    }
 };
 
 // Others
