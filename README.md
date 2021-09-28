@@ -22,7 +22,6 @@ https://onsystem.ir/
 
 ### TODO
 
-- Adding light theme
 - Support LTR
 - Adding English language
 - Adding more functions to control the webcams
