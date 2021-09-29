@@ -2,7 +2,7 @@
 
 Client-side of OnSystem
 
-# ## Themes
+### Themes
 
 - **Light** preview: https://basemax.github.io/OnSystemClient/light.html
 - **Dark** preview: https://basemax.github.io/OnSystemClient/dark.html
